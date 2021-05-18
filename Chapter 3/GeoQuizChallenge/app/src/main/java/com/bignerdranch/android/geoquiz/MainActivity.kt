@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     )
 
     private var currentIndex = 0
+    private var numCorrect = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         nextButton.setOnClickListener {
+            if(currentIndex == 5){
+                toastScore()
+            }
             currentIndex = (currentIndex+1) % questionBank.size
             updateQuestion()
             clearBlock()
@@ -96,10 +100,17 @@ class MainActivity : AppCompatActivity() {
         falseButton.isEnabled = true
     }
 
+    private fun toastScore() {
+        val score = numCorrect*100 / questionBank.size
+        Toast.makeText(this, "You scored a $score", Toast.LENGTH_SHORT).show()
+        numCorrect = 0
+    }
+
     private fun checkAnswer(userAnswer: Boolean) {
         val correctAnswer = questionBank[currentIndex].answer
 
         val messageResId = if (userAnswer == correctAnswer) {
+            ++numCorrect
             R.string.correct_toast
         } else {
             R.string.incorrect_toast
