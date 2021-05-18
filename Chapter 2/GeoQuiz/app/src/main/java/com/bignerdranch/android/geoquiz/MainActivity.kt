@@ -45,11 +45,6 @@ class MainActivity : AppCompatActivity() {
             updateQuestion()
         }
 
-        questionTextView.setOnClickListener {
-            currentIndex = (currentIndex+1) % questionBank.size
-            updateQuestion()
-        }
-
         updateQuestion()
     }
 
