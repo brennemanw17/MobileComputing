@@ -40,14 +40,17 @@ class MainActivity : AppCompatActivity() {
 
         trueButton.setOnClickListener { view ->
             checkAnswer(true)
+            blockButtons()
         }
         falseButton.setOnClickListener { view ->
             checkAnswer(false)
+            blockButtons()
         }
 
         nextButton.setOnClickListener {
             currentIndex = (currentIndex+1) % questionBank.size
             updateQuestion()
+            clearBlock()
         }
 
         updateQuestion()
@@ -81,6 +84,16 @@ class MainActivity : AppCompatActivity() {
     private fun updateQuestion() {
         val questionTextResId = questionBank[currentIndex].textResId
         questionTextView.setText(questionTextResId)
+    }
+
+    private fun blockButtons() {
+        trueButton.isEnabled = false
+        falseButton.isEnabled = false
+    }
+
+    private fun clearBlock() {
+        trueButton.isEnabled = true
+        falseButton.isEnabled = true
     }
 
     private fun checkAnswer(userAnswer: Boolean) {
