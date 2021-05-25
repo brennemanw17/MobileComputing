@@ -41,8 +41,8 @@ class CheatActivity : AppCompatActivity() {
     }
 
     companion object{
-        fun newIntent(packageConext: Context, answerIsTrue: Boolean): Intent {
-            return Intent(packageConext, CheatActivity::class.java).apply {
+        fun newIntent(packageContext: Context, answerIsTrue: Boolean): Intent {
+            return Intent(packageContext, CheatActivity::class.java).apply {
                 putExtra(EXTRA_ANSWER_IS_TRUE, answerIsTrue)
             }
         }
