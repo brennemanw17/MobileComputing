@@ -20,9 +20,6 @@ private const val TAG = "CrimeListFragment"
 
 class CrimeListFragment : Fragment() {
 
-    /**
-     * Required interface for hosting activities
-     */
     interface Callbacks {
         fun onCrimeSelected(crimeId: UUID)
     }
